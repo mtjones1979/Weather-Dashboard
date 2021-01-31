@@ -1,0 +1,27 @@
+.header {
+    padding: 5px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    font-size: x-large; 
+    background-color: #2a607c;
+    color: #ffffff;
+}
+.left {
+    float: left;
+    width: 33.3%;
+    height: 100%;
+    padding: 15px;
+    color: black(61, 44, 44);
+    background: lightgray;
+    margin-bottom: 15px;
+}
+.searchButton {
+    background:dodgerblue ;
+    padding: 13px 13px;
+}
+.cityName {
+    padding:13px 30px;
+    white-space: pre-wrap;
+}
+
+  
