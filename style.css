@@ -6,21 +6,21 @@
     background-color: #2a607c;
     color: #ffffff;
 }
-.left {
+/* .left {
     float: left;
-    width: 25%;
+    width: 23%;
     height: 100%;
     padding: 15px;
     color: black(61, 44, 44);
     background: lightgray;
-    /* margin-bottom: 15px; */
+    margin-bottom: 15px; */
 }
-.searchButton {
+#searchCityBtn {
     background:dodgerblue ;
-    padding: 13px 13px;
+    padding: 10px 10px;
 }
 #cityName {
-    padding: 13px 30px;
+    padding: 10px 30px;
     white-space: pre-wrap;
 }
 .center {
