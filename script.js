@@ -7,19 +7,38 @@ var cityWind = document.querySelector('#wind');
 var cityUvIndex = document.querySelector('#uvIndex');
 var cityList = [];
 var cityName;
+var APPKEY = "4140034c75a10c75298c4be081943fce";
+var cityInputVal = document.querySelector('#userInput');
 
+searchCityBtn.addEventListener("click", function(event){
+    event.preventDefault();
+    var cityInputVal = document.querySelector('#userInput').val();
+
+    if(cityName === ""){
+        alert("Please enter a city to look up")
+
+    }else if (cityList.length >= 5){  
+        cityList.shift();
+        cityList.push(cityName);
+
+    }else{
+    cityList.push(cityName);
+    }
+ }); 
+    displayWeather();
+    displayFiveDayForecast();
 
 function displayWeather(data) {
-    
-    var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" +getLat+ "&lon=" +getLon+ "&appid=4140034c75a10c75298c4be081943fce";
-    var getLon = data.coord.lon;
-    var getLat = data.coord.lat;
+    console.log(data);
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +cityInputVal+ "&appid=" + APPKEY + "&units=imperial";
+    // var getLon = data.coord.lon;
+    // var getLat = data.coord.lat;
     fetch(queryURL)
     .then(function (response) {
         return response.json();
     })
     .then(function (data) {
-    console.log(data);
+    
     console.log(queryURL);
           
         var cityNameEl = document.querySelector('#cityName');
@@ -71,22 +90,7 @@ function displayFiveDayForecast() {
 });
     displayFiveDayForecast();
 
-searchCityBtn.addEventListener("click", function(event){
-    event.preventDefault();
-    var cityInputVal = document.querySelector('#inputedName').val();
-    if(cityName === ""){
-        alert("Please enter a city to look up")
 
-    }else if (cityList.length >= 5){  
-        cityList.shift();
-        cityList.push(cityName);
-
-    }else{
-    cityList.push(cityName);
-    }
- }); 
-    displayWeather();
-    displayFiveDayForecast();
 
 };
 
