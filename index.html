@@ -24,40 +24,51 @@
     <nav class="header" class="display-3">
         <h1>Weather Dashboard</h1>
     </nav>
+
 <!--Search city on the left of page-->
-<div class = "container-fluid">
-    <div class="row">
-        <div class ="col-3 searchCol">
-          <h2>Search for a City:</h2>
-            <div class = "input-group mb-3">
-              <input type="text" class="form-control" id="inputedName" placeholder="City Name"></input>
-                <div class ="input-group-append"> 
+    <div class = "container-fluid">
+        <div class="row">
+            <div class ="col-3 searchCol">
+              <h2>Search for a City:</h2>
+                <div class = "input-group mb-3">
+                    <input type="text" class="form-control" id="inputedName" placeholder="City Name"></input>
+                    <div class ="input-group-append"> 
                     <button class="btn btn-outline-primary" id="searchCityBtn"><i class="fas fa-search"></i></button>
                 </div>
+                <div class="list-group" id="cityList"></div>
             </div>
-            <div class="list-group" id="cityList"></div>
-    
-<div class ="container-fluid">
-    <div id = "weeklyForecast" class ="row"></div>
-    
-    <div id = "searchedCities" class = "d-grid gap-2">
-            <div>
-                <span id="card1" class = "card text-center"></span>
-            </div>
-            <div>
-                <span id="card2" class = "card text-center"></span>
-            </div>
-            <div>
-                <span id="card3" class = "card text-center"></span>
-            </div>
-            <div>
-                <span id="card4" class = "card text-center"></span>
-            </div>
-            <div>
-                <span id="card5" class = "card text-center"></span>
+            <div class ="col-9 mb-9">
+                <div class = "center">
+                    <h1 id = "cityName" data-city=""></h1>
+                    <br>
+                    <h3 id = "temp"></h3>
+                    <h3 id = "humidity"></h3>
+                    <h3 id = "wind"></h3>
+                    <h3 id = "uvIndex"></h3>
+                </div>
             </div>
         </div>
     </div>
+
+<div class ="container-fluid">
+    <div id = "weeklyForecast" class ="row" class="d-grid gap-2">
+        <div>
+            <span id="card1" class = "card text-center"></span>
+        </div>
+        <div>
+            <span id="card2" class = "card text-center"></span>
+        </div>
+        <div>
+            <span id="card3" class = "card text-center"></span>
+        </div>
+        <div>
+            <span id="card4" class = "card text-center"></span>
+        </div>
+        <div>
+            <span id="card5" class = "card text-center"></span>
+        </div>
+    </div>
+    
 </div>
   <script
    src="https://code.jquery.com/jquery-3.5.1.min.js"

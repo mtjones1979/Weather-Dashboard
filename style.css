@@ -1,26 +1,23 @@
 .header {
-    padding: 5px;
+    padding: 15px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-align: center;
     font-size: x-large; 
     background-color: #2a607c;
     color: #ffffff;
 }
-/* .left {
+.searchCol {
     float: left;
     width: 23%;
     height: 100%;
     padding: 15px;
     color: black(61, 44, 44);
     background: lightgray;
-    margin-bottom: 15px; */
+    /* margin-bottom: 15px; */
 }
-#searchCityBtn {
-    background:dodgerblue ;
-    padding: 10px 10px;
-}
-#cityName {
-    padding: 10px 30px;
+
+#inputedName {
+    padding: 15px 30px;
     white-space: pre-wrap;
 }
 .center {
