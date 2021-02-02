@@ -28,7 +28,7 @@
     font-weight: lighter;
     border-style: ridge;
 }
-.bottom {
+#weeklyForecast {
     float: right;
     width: 50%;
     height: 100%;
