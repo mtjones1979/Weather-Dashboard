@@ -12,8 +12,8 @@ var cityInputVal = document.querySelector('#userInput');
 
 searchCityBtn.addEventListener("click", function(event){
     event.preventDefault();
-    var cityInputVal = document.getElementById('userInput').value;
-
+    var cityInputVal = document.getElementById('userInput').value.trim();
+    console.log(cityInputVal);
     if(cityInputVal === ""){
         alert("Please enter a city to look up")
 
@@ -30,7 +30,7 @@ searchCityBtn.addEventListener("click", function(event){
 
 function displayWeather() {
     
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +cityInputVal+ "&appid=" + APPKEY + "&units=imperial";
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInputVal + "&appid=" + APPKEY + "&units=imperial";
     // var getLon = data.coord.lon;
     // var getLat = data.coord.lat;
     fetch(queryURL)
@@ -41,14 +41,14 @@ function displayWeather() {
         console.log(data);
     console.log(queryURL);
           
-        var cityNameEl = document.querySelector('#cityName');
+        var cityNameEl = document.querySelector('#userInput');
         var presentDay = moment().format('MMMM Do YYYY');
-            cityNameEl.textcontent = cityName + presentDay;
+            cityNameEl.textContent = cityName + presentDay;
         var getTemp = data.main.temp;
             cityTemp.textContent = ("Temperature: " +getTemp+ "° F");
         var getHumidity = data.main.humidity;
             cityHumidity.textContent = ("Humidity: " +getHumidity+ "%");
-        var getWindSpeed = data.main.wind.speed;
+        var getWindSpeed = data.wind.speed;
             cityWind.textContent = ("Wind Speed: " +getWindSpeed+ "MPH");
         var getUvIndex = data.current.uvi;
             cityUvIndex.textContent = ("UV Index:  " +getUvIndex);
