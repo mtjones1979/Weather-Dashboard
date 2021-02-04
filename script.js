@@ -8,11 +8,12 @@ var cityUvIndex = document.querySelector('#uvIndex');
 var cityList = [];
 var cityName;
 var APPKEY = "4140034c75a10c75298c4be081943fce";
-var cityInputVal = document.querySelector('#userInput');
+var cityInputVal = document.querySelector('#cityName');
+var icon = document.querySelector('#icon');
 
 searchCityBtn.addEventListener("click", function(event){
     event.preventDefault();
-    var cityInputVal = document.getElementById('userInput').value.trim();
+    var cityInputVal = document.getElementById('cityName').value.trim();
     console.log(cityInputVal);
     if(cityInputVal === ""){
         alert("Please enter a city to look up")
@@ -21,77 +22,83 @@ searchCityBtn.addEventListener("click", function(event){
         cityList.shift();
         cityList.push(cityInputVal);
 
-    }else{
-    cityList.push(cityInputVal);
     }
- }); 
-    displayWeather();
+    // else{
+    // cityList.push(cityInputVal);
+    // }
+
+    // displayWeather();
     // displayFiveDayForecast();
 
-function displayWeather() {
-    
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInputVal + "&appid=" + APPKEY + "&units=imperial";
-    // var getLon = data.coord.lon;
-    // var getLat = data.coord.lat;
-    fetch(queryURL)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        console.log(data);
-    console.log(queryURL);
-          
-        var cityNameEl = document.querySelector('#userInput');
-        var presentDay = moment().format('MMMM Do YYYY');
+    var city;
+    var currentWeather = document.querySelector(".card-body");
+function displayWeather(data) {
+  
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInputVal + "&appid=4140034c75a10c75298c4be081943fce"
+    // currentWeather.empty();
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (data){
+        var cityNameEl = document.querySelector('#cityName');
+        var presentDay = moment().format('MMM/DD/YYYY');
             cityNameEl.textContent = cityName + presentDay;
+        var iconCode= data.weather[0].icon;
+        var iconURL = "http://openweathermap.org/img/w/" + iconCode + ".png";
+            icon.textContent = iconURL;
         var getTemp = data.main.temp;
-            cityTemp.textContent = ("Temperature: " +getTemp+ "° F");
+            cityTemp.textContent = ("Temperature: " +getTemp+ " °F");
         var getHumidity = data.main.humidity;
-            cityHumidity.textContent = ("Humidity: " +getHumidity+ "%");
+            cityHumidity.textContent = ("Humidity: " +getHumidity+ " %");
         var getWindSpeed = data.wind.speed;
-            cityWind.textContent = ("Wind Speed: " +getWindSpeed+ "MPH");
-        var getUvIndex = data.current.uvi;
-            cityUvIndex.textContent = ("UV Index:  " +getUvIndex);
+            cityWind.textContent = ("Wind Speed: " +getWindSpeed+ " MPH");
+        // var getUvIndex = data.current.uvi;
+        //     cityUvIndex.textContent = ("UV Index:  " +getUvIndex);
+        
     })
-};  displayWeather();
+    var getLon = data.coord.lon;
+        var getLat = data.coord.lat;
+    console.log(queryURL);
+};   
+    displayWeather();
 
-// function displayFiveDayForecast() {
 
-//     var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" +getLat+ "&lon" +getLon+ "&appid=4140034c75a10c75298c4be081943fce";
-//     var getLon = data.coord.lon;
-//     var getLat = data.coord.lat;
-//     fetch(queryURL)
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         console.log(data);
-//       console.log(response);
-//       for (i=0; i<5;i++){
-//           var forecastCard = document.createElement("div");
-//           forecastCard.classList.add('card', 'text-dark', 'text-center')  
+    var getLon = data.coord.lon;
+    var getLat = data.coord.lat;
+function displayFiveDayForecast(data) {
+    
+    var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" +getLat+ "&lon" +getLon+ "&appid=4140034c75a10c75298c4be081943fce";
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (data){
+        console.log(data);
+         console.log(response);
+      for (i=0; i<5;i++){
+          var forecastCard = document.createElement("div");
+          forecastCard.classList.add('card', 'text-dark', 'text-center')  
           
-//           var resultBody = document.createElement("div");
-//           resultBody.classList.add('card-body');
-//           forecastCard.append(resultBody);
+          var resultBody = document.createElement("div");
+          resultBody.classList.add('card-body');
+          forecastCard.append(resultBody);
 
-//           var bodyContentEl = document.createElement('p');
-//           var cityDate = moment().format("MM/DD/YYYY");
-//           bodyContentEl.innerHTML = cityDate + '<br>'
+          var bodyContentEl = document.createElement('p');
+          var cityDate = moment().format("MM/DD/YYYY");
+          bodyContentEl.innerHTML = cityDate + '<br>'
           
-//           var getTemp = data.list[i].daily.temp;
-//           bodyContentEl.innerHTML = 'Temperature: ' +getTemp+ '° F' + '<br>';
+          var getTemp = data.list[i].daily.temp;
+          bodyContentEl.innerHTML = 'Temperature: ' +getTemp+ '° F' + '<br>';
 
-//           var getHumidity = response.list[i].daily.humidity;
-//           bodyContentEl.innerHTML = 'Humidity: ' +getHumidity+ '%' + '<br>';
-//         }
-//         resultBody.append(bodyContentEl);
-//         weeklyForecast.append(forecastCard);
-// });
-//     displayFiveDayForecast();
+          var getHumidity = data.list[i].daily.humidity;
+          bodyContentEl.innerHTML = 'Humidity: ' +getHumidity+ '%' + '<br>';
+        }
+        resultBody.append(bodyContentEl);
+        weeklyForecast.append(forecastCard);
+    })
+    displayFiveDayForecast();
 
-// });
-
+};  console.log(displayFiveDayForecast);
+}); 
 
 
 // // Trying to search for a city 
